@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'pg'
 require './lib/bookmark'
 
 class BookmarkManager < Sinatra::Base
@@ -8,7 +9,6 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/' do
-    # 'Bookmark Manager'
     erb :index
   end
 
