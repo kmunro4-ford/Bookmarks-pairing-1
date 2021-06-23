@@ -11,7 +11,16 @@ class Bookmark
       res = conn.exec_params('SELECT url FROM bookmarks')
       return res.values.join(", ")
     end
+  end
 
+  def self.add_to_table(bookmark)
+    if ENV['ENVIRONMENT'] == 'test'
+      conn = PG::Connection.open(:dbname => 'bookmark_manager_test')
+      conn.exec("INSERT INTO bookmarks (url) VALUES ('#{bookmark}');")
+    else
+      conn = PG::Connection.open(:dbname => 'bookmark_manager')
+      conn.exec("INSERT INTO bookmarks (url) VALUES ('#{bookmark}');")
+    end
   end
 
 end

@@ -12,3 +12,11 @@ feature 'Viewing bookmarks' do
     expect(page).to have_content "http://www.makersacademy.com"
   end
 end
+
+feature 'Adding bookmarks' do
+  scenario 'add a bookmark' do
+    test_adding_new_bookmark_method
+    conn = PG::Connection.open(:dbname => 'bookmark_manager_test')
+    expect(page).to have_content "http://www.thisnewwebsite.com"
+  end
+end
