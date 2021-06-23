@@ -19,10 +19,24 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/add_bookmark' do
-    @new_bookmark_url = params[:new_bookmark_url]
-    @new_bookmark_title = params[:new_bookmark_title]
-    Bookmark.add_to_table(@new_bookmark_url, @new_bookmark_title)
+    @url = params[:new_bookmark_url]
+    @title = params[:new_bookmark_title]
+    Bookmark.add_to_table(@url, @title)
+    redirect "/add_bookmark_get"
+  end
+
+  get '/add_bookmark_get' do
     erb :new_bookmark
+  end
+
+  post '/remove_bookmark' do
+    @remove = params[:remove_bookmark_title]
+    Bookmark.remove_from_table(@remove)
+    redirect "remove_bookmark_get"
+  end
+
+  get '/remove_bookmark_get' do
+    erb :remove_bookmark
   end
 
   run! if app_file == $0

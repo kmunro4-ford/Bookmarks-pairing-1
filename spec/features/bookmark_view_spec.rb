@@ -15,8 +15,18 @@ end
 
 feature 'Adding bookmarks' do
   scenario 'add a bookmark' do
-    test_adding_new_bookmark_method
     conn = PG::Connection.open(:dbname => 'bookmark_manager_test')
+    test_adding_new_bookmark_method
     expect(page).to have_content "New Test Website"
+  end
+end
+
+feature 'Removing bookmarks' do
+  scenario 'remove a bookmark' do
+    conn = PG::Connection.open(:dbname => 'bookmark_manager_test')
+    test_adding_new_bookmark_method
+    expect(page).to have_content "New Test Website"
+    test_removing_a_bookmark_method
+    expect(page).to_not have_content "New Test Website"
   end
 end

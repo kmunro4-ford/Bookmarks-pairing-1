@@ -11,6 +11,11 @@ class Bookmark
     @conn.exec("INSERT INTO bookmarks (url, title) VALUES ('#{bookmark_url}', '#{bookmark_title}');")
   end
 
+  def self.remove_from_table(bookmark_title)
+    self.setup
+    @conn.exec("DELETE FROM bookmarks WHERE title = '#{bookmark_title}';")
+  end
+
   private
   def self.setup
     if ENV['ENVIRONMENT'] == 'test'
