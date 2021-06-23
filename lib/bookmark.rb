@@ -2,13 +2,13 @@ class Bookmark
 
   def self.all
     self.setup
-    res = @conn.exec_params('SELECT url FROM bookmarks')
+    res = @conn.exec_params('SELECT title FROM bookmarks')
     return res.values.join(", ")
   end
 
-  def self.add_to_table(bookmark)
+  def self.add_to_table(bookmark_url, bookmark_title)
     self.setup
-    @conn.exec("INSERT INTO bookmarks (url) VALUES ('#{bookmark}');")
+    @conn.exec("INSERT INTO bookmarks (url, title) VALUES ('#{bookmark_url}', '#{bookmark_title}');")
   end
 
   private
@@ -19,5 +19,5 @@ class Bookmark
       @conn = PG::Connection.open(:dbname => 'bookmark_manager')
     end
   end
-  
+
 end

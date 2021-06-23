@@ -19,8 +19,9 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/add_bookmark' do
-    @new_bookmark = params[:new_bookmark]
-    Bookmark.add_to_table(@new_bookmark)
+    @new_bookmark_url = params[:new_bookmark_url]
+    @new_bookmark_title = params[:new_bookmark_title]
+    Bookmark.add_to_table(@new_bookmark_url, @new_bookmark_title)
     erb :new_bookmark
   end
 
