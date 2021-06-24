@@ -30,3 +30,14 @@ feature 'Removing bookmarks' do
     expect(page).to_not have_content "New Test Website"
   end
 end
+
+feature 'Editing a bookmark' do
+  scenario 'edit New Test Webiste bookmark' do
+    conn = PG::Connection.open(:dbname => 'bookmark_manager_test')
+    test_adding_new_bookmark_method
+    expect(page).to have_content "New Test Website"
+    test_editing_a_bookmark_method
+    expect(page).to_not have_content "New Test Website"
+    expect(page).to have_content "Why am I Here"
+  end
+end

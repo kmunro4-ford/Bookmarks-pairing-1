@@ -11,3 +11,6 @@ def test_removing_a_bookmark_method
   click_button 'Submit2'
   click_button 'Go Back'
 end
+
+def test_editing_a_bookmark_method
+end
