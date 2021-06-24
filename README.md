@@ -13,3 +13,15 @@ As an internet freak
 So that I can bookmark my favourite websites
 I would like to be able to add a bookmark to my table
 ```
+
+```
+As an internet freak
+So that i can forget sites
+I would like to be able to remove a bookmark from my table
+```
+
+```
+As an internet freak
+So that i can edit a bookmark
+I would like to be able to edit a bookmark stored in my table
+```

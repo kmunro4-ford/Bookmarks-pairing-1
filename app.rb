@@ -43,5 +43,20 @@ class BookmarkManager < Sinatra::Base
     erb :remove_bookmark
   end
 
+  post '/edit_bookmark' do
+    session[:edit_bookmark_old_title] = params[:edit_bookmark_old_title]
+    session[:edit_bookmark_new_title] = params[:edit_bookmark_new_title]
+    session[:edit_bookmark_new_url] = params[:edit_bookmark_new_url]
+    Bookmark.edit_bookmark_from_table(session[:edit_bookmark_old_title], session[:edit_bookmark_new_title], session[:edit_bookmark_new_url])
+    redirect "edit_bookmark_get"
+  end
+
+  get '/edit_bookmark_get' do
+    @edit_old_title = session[:edit_bookmark_old_title]
+    @edit_new_title = session[:edit_bookmark_new_title]
+    @edit_new_url = session[:edit_bookmark_new_url]
+    erb :edit_bookmark
+  end
+
   run! if app_file == $0
 end

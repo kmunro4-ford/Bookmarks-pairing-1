@@ -16,6 +16,12 @@ class Bookmark
     @conn.exec("DELETE FROM bookmarks WHERE title = '#{bookmark_title}';")
   end
 
+  def self.edit_bookmark_from_table(old_title, new_title, new_url)
+    self.setup
+    @conn.exec("UPDATE bookmarks SET url = '#{new_url}', title = '#{new_title}' WHERE title = '#{old_title}';")
+  end
+
+
   private
   def self.setup
     if ENV['ENVIRONMENT'] == 'test'

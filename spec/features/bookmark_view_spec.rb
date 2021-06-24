@@ -38,6 +38,6 @@ feature 'Editing a bookmark' do
     expect(page).to have_content "New Test Website"
     test_editing_a_bookmark_method
     expect(page).to_not have_content "New Test Website"
-    expect(page).to have_content "Why am I Here"
+    expect(page).to have_content "Where am I"
   end
 end

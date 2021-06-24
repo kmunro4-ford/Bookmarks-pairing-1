@@ -22,7 +22,7 @@ describe Bookmark do
       conn = PG::Connection.open(:dbname => 'bookmark_manager_test')
       Bookmark.add_to_table("http://www.thisnewwebsite.com", "New Test Website")
       expect(Bookmark.all).to include("New Test Website")
-      Bookmark.edit_from_table("New Test Website", "http://www.whyareyouhere.com", "Where am I")
+      Bookmark.edit_bookmark_from_table("New Test Website", "Where am I", "http://www.whyareyouhere.com")
       expect(Bookmark.all).to_not include("New Test Website")
       expect(Bookmark.all).to include("Where am I")
     end
